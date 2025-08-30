@@ -9,11 +9,9 @@ app.use(cors());
 app.use(express.json());
 
 // Conectar ao banco de dados
-// connectDB();
+connectDB();
 
 // Rotas
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
-
-export default app;

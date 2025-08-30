@@ -15,5 +15,3 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
-
-export default app;
