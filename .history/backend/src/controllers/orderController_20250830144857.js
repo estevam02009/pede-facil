@@ -31,28 +31,3 @@ export const createOrder = async (req, res) => {
         res.status(500).json({ message: "Erro ao criar pedido", error: error.message });
     }
 }
-
-// Listar pedidos do usuário
-export const getMyOrders = async (req, res) => {
-    try {
-        const orders = await Order.find({ user: req.user._id})
-            .populate("items")
-            .populate("restaurant", "name email");
-
-        res.status(200).json(orders);
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao listar pedidos", error: error.message });
-    }
-}
-
-// Atualizar status do pedido
-export const updateOrderStatus = async (req, res) => {
-    try {
-        const { status } = req.body;
-        const order = await Order.findById(req.params.id, { status }, { new: true })
-            .populate("items");
-        res.status(200).json(order);
-    } catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar status do pedido", error: error.message });
-    }
-}
